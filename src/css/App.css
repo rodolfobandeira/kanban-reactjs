@@ -1,0 +1,42 @@
+body {
+  font-family: Tahoma, Helvetica, Arial, sans-serif;
+  font-size: 0.9rem;
+  color: #000;
+}
+
+.kanban {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.kanban-board {
+  flex-basis: 0;
+  flex-grow: 1;
+  border-left: 1px solid #e7e7e7;
+  border-bottom: 1px solid #e7e7e7;
+  float: left;
+  width: 200px;
+}
+
+.kanban-board:last-child {
+  border-right: 1px solid #e7e7e7;
+}
+
+
+.kanban-board-title {
+  background-color: #282c2f;
+  color: #eeeff0;
+  padding: 7px;
+  text-align: center;
+  clear: both;
+}
+
+
+.kanban-board-item {
+  background-color: #eeeff0;
+  border-radius: 2px;
+  margin: 4px;
+  padding: 7px;
+  clear: both;
+  font-size: 80%;
+}
