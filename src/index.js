@@ -13,17 +13,17 @@ class App extends Component {
         items: [
           {
             id: 1,
-            description: 'Do task A',
+            description: 'Task A',
             position: 1
           },
           {
             id: 2,
-            description: 'Do task B',
+            description: 'Task B',
             position: 2
           },
           {
             id: 3,
-            description: 'Do task C',
+            description: 'Task C',
             position: 3
           }
         ]
@@ -34,7 +34,7 @@ class App extends Component {
         items: [
           {
             id: 4,
-            description: 'Doing task 4',
+            description: 'Task D',
             position: 1
           }
         ]
@@ -45,7 +45,7 @@ class App extends Component {
         items: [
           {
             id: 5,
-            description: 'Do done 1',
+            description: 'Task E',
             position: 1
           }
         ]

@@ -1,20 +1,47 @@
 import React from 'react';
 import KanbanBoardItem from './KanbanBoardItem';
-import { DndProvider } from 'react-dnd';
-import Backend from 'react-dnd-html5-backend';
-/*
- * Drag and Drop Library:
- * https://codesandbox.io/s/github/react-dnd/react-dnd/tree/gh-pages/examples_hooks_js/04-sortable/simple?from-embed
- */
 
 const KanbanBoard = props => {
+  const dragOver = e => {
+    e.preventDefault();
+    e.target.style = 'cursor: grab';
+  }
+
+  const drop = e => {
+    const kanbanBoardItemId = e.dataTransfer.getData('kanbanBoardItemId');
+    const kanbanBoardItem = document.getElementById(kanbanBoardItemId);
+    kanbanBoardItem.style.display = 'block';
+    kanbanBoardItem.style.cursor = 'default';
+
+    if (e.target.className === "kanban-board") {
+      e.target.appendChild(kanbanBoardItem);
+    } else if (e.target.className === "kanban-board-item") {
+      e.target.parentNode.appendChild(kanbanBoardItem);
+    }
+  }
+
+  const dragEnd = e => {
+    e.target.style.opacity = "1";
+    e.target.style.cursor = 'default';
+  }
+
   const kanbanBoards = props.kanbanBoards.map((kanbanBoard, i) => {
     return (
-      <div className="kanban-board" key={i}>
-        <DndProvider backend={Backend}>
-          <div className="kanban-board-title">{kanbanBoard.title}</div>
-          <KanbanBoardItem kanbanBoardItems={kanbanBoard.items} />
-        </DndProvider>
+      <div
+        className="kanban-board"
+        key={`kanban_board_key_${i}`}
+        id={`kanban_board_id_${i}`}
+        onDrop={drop}
+        onDragOver={dragOver}
+      >
+        <div className="kanban-board-title">{kanbanBoard.title}</div>
+        <div id="kanban-board-content">
+          <KanbanBoardItem
+            kanbanBoardItems={kanbanBoard.items}
+            draggable="true"
+            dragEnd={dragEnd}
+          />
+        </div>
       </div>
     );
   });
